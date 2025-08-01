@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面 1 - 实时更新系统</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563EB',
+                        accent: '#F59E0B'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+     
+    <main class="container mx-auto px-4 py-8">
+        <div class="bg-white rounded-xl shadow-md p-6 md:p-8">
+            <div id="page-content">
+                <!-- 内容将通过JavaScript动态加载 -->
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    
+
+    <!-- 更新提示 -->
+    
+
+    <script>
+        // 当前页面ID - 其他页面需要修改此值（2-10）
+        const currentPageId = 7;
+        
+        // 初始化页面数据
+        function initializePages() {
+            if (!localStorage.getItem('pageData')) {
+                const initialPages = [];
+                for (let i = 1; i <= 10; i++) {
+                    initialPages.push({
+                        id: i,
+                        title: `页面 ${i} - 初始标题`,
+                        content: ` `,
+                        //image: `https://picsum.photos/id/${i + 30}/800/400`
+                    });
+                }
+                localStorage.setItem('pageData', JSON.stringify(initialPages));
+            }
+        }
+        
+        // 获取当前页面数据
+        function getCurrentPage() {
+            const pages = JSON.parse(localStorage.getItem('pageData') || '[]');
+            return pages.find(page => page.id === currentPageId);
+        }
+        
+        // 加载并显示当前页面内容
+        function loadCurrentPage(showNotification = false) {
+            const page = getCurrentPage();
+            if (page) {
+                const container = document.getElementById('page-content');
+                
+                // 添加淡入淡出动画效果
+               // container.style.opacity = '0';
+                
+                setTimeout(() => {
+                    container.innerHTML = `
+                         
+                    `;
+                    
+                    container.style.opacity = '1';
+                    container.style.transition = 'opacity 0.3s ease-in-out';
+                    
+                    // 显示更新通知
+                    if (showNotification) {
+                        showUpdateNotification();
+                    }
+                }, 200);
+            }
+        }
+        
+        // 显示更新通知
+        function showUpdateNotification() {
+            const notification = document.getElementById('update-notification');
+            notification.classList.remove('opacity-0');
+            
+            setTimeout(() => {
+                notification.classList.add('opacity-0');
+            }, 2000);
+        }
+        
+        // 监听localStorage变化，实现实时更新
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'pageData') {
+                // 检查是否是当前页面被更新
+                const lastUpdatedPage = localStorage.getItem('lastUpdatedPage');
+                if (lastUpdatedPage === currentPageId.toString()) {
+                    loadCurrentPage(true);
+                }
+            }
+        });
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            initializePages();
+            loadCurrentPage();
+        });
+    </script>
+</body>
+</html>

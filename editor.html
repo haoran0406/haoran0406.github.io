@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内容编辑器 - 实时更新系统</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563EB',
+                        accent: '#F59E0B',
+                        success: '#10B981',
+                        danger: '#EF4444'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- 导航栏 -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa fa-edit text-accent text-2xl"></i>
+                <h1 class="text-xl font-bold">内容编辑器</h1>
+            </div>
+            <div>
+                <a href="page1.html" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-md inline-flex items-center transition">
+                    <i class="fa fa-eye mr-2"></i> 查看页面
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 页面导航 -->
+    <nav class="bg-white border-b">
+        <div class="container mx-auto px-4">
+            <div class="flex overflow-x-auto py-3 space-x-1 min-w-max">
+                <a href="page1.html" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md font-medium whitespace-nowrap transition">页面 1</a>
+                <a href="page2.html" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md font-medium whitespace-nowrap transition">页面 2</a>
+                <a href="page3.html" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md font-medium whitespace-nowrap transition">页面 3</a>
+                <a href="page4.html" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md font-medium whitespace-nowrap transition">页面 4</a>
+                <a href="page5.html" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md font-medium whitespace-nowrap transition">页面 5</a>
+                <a href="page6.html" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md font-medium whitespace-nowrap transition">页面 6</a>
+                <a href="page7.html" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md font-medium whitespace-nowrap transition">页面 7</a>
+                <a href="page8.html" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md font-medium whitespace-nowrap transition">页面 8</a>
+                <a href="page9.html" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md font-medium whitespace-nowrap transition">页面 9</a>
+                <a href="page10.html" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md font-medium whitespace-nowrap transition">页面 10</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容区 -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="bg-white rounded-xl shadow-md p-6 md:p-8">
+            <h2 class="text-2xl font-bold mb-6 flex items-center">
+                <i class="fa fa-pencil-square-o text-accent mr-2"></i> 页面内容编辑
+            </h2>
+            
+            <div class="mb-6">
+                <label for="page-selector" class="block text-sm font-medium text-gray-700 mb-1">选择要编辑的页面:</label>
+                <select id="page-selector" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                    <option value="1">页面 1</option>
+                    <option value="2">页面 2</option>
+                    <option value="3">页面 3</option>
+                    <option value="4">页面 4</option>
+                    <option value="5">页面 5</option>
+                    <option value="6">页面 6</option>
+                    <option value="7">页面 7</option>
+                    <option value="8">页面 8</option>
+                    <option value="9">页面 9</option>
+                    <option value="10">页面 10</option>
+                </select>
+            </div>
+            
+            <div class="mb-6">
+                <label for="page-title" class="block text-sm font-medium text-gray-700 mb-1">页面标题:</label>
+                <input type="text" id="page-title" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary text-lg">
+            </div>
+            
+            <div class="mb-6">
+                <label for="page-content" class="block text-sm font-medium text-gray-700 mb-1">页面内容:</label>
+                <textarea id="page-content" rows="12" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"></textarea>
+                <p class="mt-1 text-xs text-gray-500">支持基本的HTML标签，如 &lt;strong&gt;&lt;/strong&gt;、&lt;em&gt;&lt;/em&gt;、&lt;br&gt; 等</p>
+            </div>
+            
+            <!-- <div class="mb-6">
+                <label for="page-image" class="block text-sm font-medium text-gray-700 mb-1">页面图片URL (可选):</label>
+                <input type="text" id="page-image" placeholder="https://example.com/image.jpg" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+            </div> -->
+            
+            <div class="flex flex-wrap gap-4">
+                <button id="save-page" class="bg-success hover:bg-success/90 text-white px-6 py-3 rounded-md font-medium transition flex-1 md:flex-none">
+                    <i class="fa fa-save mr-2"></i> 保存内容
+                </button>
+                <button id="preview-page" class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-md font-medium transition flex-1 md:flex-none">
+                    <i class="fa fa-eye mr-2"></i> 预览页面
+                </button>
+                <button id="reset-page" class="bg-danger hover:bg-danger/90 text-white px-6 py-3 rounded-md font-medium transition flex-1 md:flex-none">
+                    <i class="fa fa-refresh mr-2"></i> 重置当前页
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-4 text-center text-sm text-gray-400">
+            <p>© 2023 多页面内容系统 | <a href="page1.html" class="text-accent hover:underline">返回内容页面</a></p>
+        </div>
+    </footer>
+
+    <!-- 通知提示 -->
+    <div id="notification" class="fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 flex items-center z-50">
+        <i id="notification-icon" class="mr-2"></i>
+        <span id="notification-message"></span>
+    </div>
+
+    <script>
+        // 初始化页面数据
+        function initializePages() {
+            if (!localStorage.getItem('pageData')) {
+                const initialPages = [];
+                for (let i = 1; i <= 10; i++) {
+                    initialPages.push({
+                        id: i,
+                        title: `页面 ${i} - 初始标题`,
+                        content: `<p>这是页面 ${i} 的初始内容。您可以通过编辑页面修改这段文字，添加新的内容和格式。</p>
+                                 <p>编辑后无需刷新页面，内容会实时更新！</p>
+                                 <ul>
+                                     <li><strong>粗体文本</strong></li>
+                                     <li><em>斜体文本</em></li>
+                                 </ul>`,
+                        //image: `https://picsum.photos/id/${i + 30}/800/400`
+                    });
+                }
+                localStorage.setItem('pageData', JSON.stringify(initialPages));
+            }
+        }
+        
+        // 获取所有页面数据
+        function getPageData() {
+            return JSON.parse(localStorage.getItem('pageData') || '[]');
+        }
+        
+        // 获取单个页面数据
+        function getPage(pageId) {
+            const pages = getPageData();
+            return pages.find(page => page.id === parseInt(pageId));
+        }
+        
+        // 保存页面数据并触发更新
+        function savePage(page) {
+            const pages = getPageData();
+            const index = pages.findIndex(p => p.id === page.id);
+            if (index !== -1) {
+                pages[index] = page;
+                
+                // 为了确保触发storage事件，先删除再添加
+                localStorage.removeItem('pageData');
+                localStorage.setItem('pageData', JSON.stringify(pages));
+                
+                // 记录最后更新的页面ID
+                localStorage.setItem('lastUpdatedPage', page.id.toString());
+                return true;
+            }
+            return false;
+        }
+        
+        // 加载编辑表单数据
+        function loadEditorForm(pageId) {
+            const page = getPage(pageId);
+            if (page) {
+                document.getElementById('page-title').value = page.title;
+                document.getElementById('page-content').value = page.content;
+               // document.getElementById('page-image').value = page.image || '';
+            }
+        }
+        
+        // 显示通知
+        function showNotification(message, isSuccess = true) {
+            const notification = document.getElementById('notification');
+            const icon = document.getElementById('notification-icon');
+            const messageEl = document.getElementById('notification-message');
+            
+            if (isSuccess) {
+                notification.className = 'fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg bg-success text-white transform translate-y-20 opacity-0 transition-all duration-300 flex items-center z-50';
+                icon.className = 'fa fa-check-circle mr-2';
+            } else {
+                notification.className = 'fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg bg-danger text-white transform translate-y-20 opacity-0 transition-all duration-300 flex items-center z-50';
+                icon.className = 'fa fa-exclamation-circle mr-2';
+            }
+            
+            messageEl.textContent = message;
+            setTimeout(() => {
+                notification.classList.remove('translate-y-20', 'opacity-0');
+            }, 10);
+            
+            setTimeout(() => {
+                notification.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            initializePages();
+            loadEditorForm(1);
+            
+            // 页面选择事件
+            document.getElementById('page-selector').addEventListener('change', (e) => {
+                loadEditorForm(e.target.value);
+            });
+            
+            // 保存页面按钮事件
+            document.getElementById('save-page').addEventListener('click', () => {
+                const pageId = parseInt(document.getElementById('page-selector').value);
+                const title = document.getElementById('page-title').value;
+                const content = document.getElementById('page-content').value;
+                //const image = document.getElementById('page-image').value;
+                
+                if (!title.trim()) {
+                    showNotification('请输入页面标题', false);
+                    return;
+                }
+                
+                if (!content.trim()) {
+                    showNotification('请输入页面内容', false);
+                    return;
+                }
+                
+                const success = savePage({
+                    id: pageId,
+                    title: title,
+                    content: content,
+                   // image: image || ''
+                });
+                
+                if (success) {
+                    showNotification('页面内容已保存，相关页面已实时更新');
+                } else {
+                    showNotification('保存失败，请重试', false);
+                }
+            });
+            
+            // 预览页面按钮事件
+            document.getElementById('preview-page').addEventListener('click', () => {
+                const pageId = document.getElementById('page-selector').value;
+                window.open(`page${pageId}.html`, '_blank');
+            });
+            
+            // 重置当前页按钮事件
+            document.getElementById('reset-page').addEventListener('click', () => {
+                const pageId = parseInt(document.getElementById('page-selector').value);
+                if (confirm(`确定要重置页面 ${pageId} 的内容吗？`)) {
+                    const initialPage = {
+                        id: pageId,
+                        title: `页面 ${pageId} - 初始标题`,
+                        content: `<p>这是页面 ${pageId} 的初始内容。您可以通过编辑页面修改这段文字，添加新的内容和格式。</p>
+                                 <p>编辑后无需刷新页面，内容会实时更新！</p>
+                                 <ul>
+                                     <li><strong>粗体文本</strong></li>
+                                     <li><em>斜体文本</em></li>
+                                 </ul>`,
+                         
+                    };
+                    
+                    savePage(initialPage);
+                    loadEditorForm(pageId);
+                    showNotification(`页面 ${pageId} 已重置`);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
